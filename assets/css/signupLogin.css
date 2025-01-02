@@ -1,0 +1,118 @@
+/* General Reset */
+body {
+    background-color: #d9d9d9;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #374f59;
+}
+
+.outerBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #d9d9d9;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Form Container Styling */
+.form {
+    display: none; /* Forms are hidden by default */
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #374f59;
+    padding: 40px 30px;
+    background-color: #35636d;
+    border-radius: 15px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    width: 400px; /* Increased width */
+    text-align: center;
+}
+
+.form h1 {
+    color: #d9d9d9;
+    font-size: 26px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Input Fields */
+.form form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form form input {
+    margin-bottom: 20px;
+    padding: 14px;
+    border: 2px solid #374f59;
+    border-radius: 8px;
+    background-color: #d1d1d1; /* Slightly darker shade for inputs */
+    color: #374f59;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.form form input:focus {
+    outline: none;
+    border-color: #35636d;
+    box-shadow: 0px 0px 8px #35636d;
+    background-color: #ececec; /* Brighter focus shade */
+}
+
+/* Buttons */
+.form form button {
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #374f59;
+    color: #d9d9d9;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form form button:hover {
+    background-color: #2b454e; /* Slightly darker shade on hover */
+    transform: scale(1.03);
+}
+
+.form form button:active {
+    transform: scale(0.98);
+}
+
+/* Text Links */
+.form form p {
+    margin-top: 15px;
+    font-size: 15px;
+    color: #d9d9d9;
+}
+
+.form form p a {
+    color: #d9d9d9;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.form form p a:hover {
+    color: #374f59;
+    border-bottom: 2px solid #374f59;
+}
+
+/* Default Form Display */
+#loginForm {
+    display: flex;
+}

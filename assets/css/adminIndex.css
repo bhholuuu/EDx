@@ -1,0 +1,243 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: #000000;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header{
+    background-color: #121212;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.header h1{
+    color: #F5F5F5;
+    font-size: 40px;
+    margin: 0;
+}
+
+.header button{
+    background: #333333;
+}
+
+.header .logo img, .header .account img{
+    height: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.mainBody {
+    display: flex;
+    height: calc(90vh - 20px); /* Adjust height to account for the margin */
+    margin: 0 10px 10px 10px;
+}
+
+.navigation {
+    width: 20%;
+    background-color: #121212;
+    margin-right: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.navigation button{
+    background: #333333;
+    color: #F5F5F5;
+    border-radius: 10px;
+    border: none;
+    font-size: 25px;
+    /* text-decoration: none; */
+    margin: 20px;
+    padding: 10px;
+    width: 80%;
+    cursor: pointer;
+}
+.navigation button:hover {
+    background: white;
+    color: black;
+}
+.navigation button:focus {
+    /* padding: 20px; */
+    color: black;
+    background: rgb(129, 52, 52);
+}
+
+#content {
+    width: calc(80% - 10px);
+    background-color: #121212;
+    border-radius: 10px;
+}
+
+.navigation, #content {
+    padding: 10px;
+    overflow: hidden; /* Prevents internal scrolling if content exceeds the size */
+}
+
+.mainBody #content{
+    flex: 1;
+    overflow-y: auto; /* Enables vertical scrolling for overflow */
+    padding: 20px;
+    background-color: #121212;
+}
+
+
+/* ! Dashbord */
+
+.dashbord, .story, .comment {
+    height: 100%;
+    margin-left: 10px;
+    color: #f5f5f5;
+    padding-bottom: -100px;
+    overflow: hidden;
+}
+
+.dashbord .content, .story .content, .comment .content {
+    height: 100%;
+}
+
+.btnStory {
+    background: url('https://c0.wallpaperflare.com/preview/629/328/993/narrative-book-nature-paper.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .3;
+    height: 50%;
+    width: 25%;
+}
+
+.btnUser {
+    background: url('https://atlassianblog.wpengine.com/wp-content/uploads/2022/01/2240x1090-1-1560x760.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .3;
+    height: 50%;
+    width: 25%;
+}
+
+.btnComment {
+    background: url('https://storage.googleapis.com/twg-content/images/ASC---91_Why-modeled-conversions-are-necessar.width-1200.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .3;
+    height: 50%;
+    width: 25%;
+}
+
+.dashbord .content button, .story .content button, .comment .content button {
+    display: inline-block;
+    border-radius: 12px; /* Rounded corners to resemble a button */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds depth with a shadow */
+    cursor: pointer; /* Changes cursor to pointer to indicate it's clickable */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effects */
+    overflow: hidden; /* Ensures the image stays within the rounded corners */
+    width: 100%; /* Make it responsive */
+    max-width: 300px; /* Set a maximum width */
+}
+
+.btnStory:hover, .btnUser:hover, .btnComment:hover{
+    transform: translateY(-5px); /* Moves the image up slightly on hover */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Enhances the shadow on hover */
+}
+
+
+/* ! Story */
+
+.story {
+    height: 100%;
+    margin-left: 10px;
+    color: #f5f5f5;
+}
+
+
+/* ! user */
+
+.user {
+    height: 100%;
+    margin-left: 10px;
+    color: #f5f5f5;
+}
+
+.user .content table {
+    width: 80%;
+    border-collapse: collapse;
+    align-items: center;
+}
+.user .content table, .user .content th, .user .content td {
+    border: 1px solid black;
+}
+.user .content th, .user .content td {
+    padding: 15px;
+    text-align: center;
+}
+.user .content img {
+    width: 50px;
+    height: 50px;
+    align-items: center;
+}
+/* First row with red background */
+.user .content tr:first-child {
+    background-color: #FF0000;
+    color: white;
+}
+/* Alternate row colors starting from the second row */
+.user .content tr:nth-child(2n+2) {
+    background-color: #222222;
+    color: white;
+}
+.user .content tr:nth-child(2n+3) {
+    background-color: #555555;
+    color: white;
+}
+
+/* ! comment */
+
+.comments {
+    height: 100%;
+    margin-left: 10px;
+    color: #f5f5f5;
+}
+
+.comments .content table {
+    width: 80%;
+    border-collapse: collapse;
+    align-items: center;
+}
+.comments .content table, .comments .content th, .comments .content td {
+    border: 1px solid black;
+}
+.comments .content th, .comments .content td {
+    padding: 15px;
+    text-align: center;
+}
+.comments .content img {
+    width: 50px;
+    height: 50px;
+    align-items: center;
+}
+/* First row with red background */
+.comments .content tr:first-child {
+    background-color: #FF0000;
+    color: white;
+}
+/* Alternate row colors starting from the second row */
+.comments .content tr:nth-child(2n+2) {
+    background-color: #222222;
+    color: white;
+}
+.comments .content tr:nth-child(2n+3) {
+    background-color: #555555;
+    color: white;
+}
