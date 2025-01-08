@@ -19,38 +19,6 @@
         color: #333;
     }
 
-    header {
-        background: linear-gradient(90deg, #007bff, #0056b3);
-        color: #fff;
-        padding: 20px 10%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    header h1 {
-        font-size: 2rem;
-        font-weight: bold;
-    }
-
-    header nav {
-        display: flex;
-        gap: 15px;
-    }
-
-    header nav a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 1rem;
-        font-weight: 500;
-        transition: color 0.3s ease;
-    }
-
-    header nav a:hover {
-        color: #f4f4f4;
-    }
-
     .hero {
         background: url('https://source.unsplash.com/1920x1080/?education,learning') no-repeat center center/cover;
         height: 70vh;
@@ -155,30 +123,14 @@
         .feature-card {
             flex: 1 1 100%;
         }
-
-        header {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        header nav {
-            margin-top: 10px;
-        }
     }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>EDx</h1>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#courses">Courses</a>
-            <a href="#features">Features</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+    <?php include 'header.php'; ?>
+
 
     <section class="hero">
         <div>
