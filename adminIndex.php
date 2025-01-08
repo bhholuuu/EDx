@@ -49,6 +49,7 @@ if ($_SESSION['username'] !== 'admin') {
             <button onclick="loadContent('assets/php/adminPages/categories')">Categories</button>
             <button onclick="loadContent('assets/php/adminPages/courses')">Courses</button>
             <button onclick="loadContent('assets/php/adminPages/videos')">Videos</button>
+            <button onclick="loadContent('assets/php/adminPages/notes')">Notes</button>
             <button onclick="loadContent('assets/php/adminPages/quiz')">Quiz</button>
             <button onclick="loadContent('assets/php/adminPages/comments')">Comments</button>
         </div>

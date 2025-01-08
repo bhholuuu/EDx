@@ -209,9 +209,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h1>SignUp</h1>
             <form action="signup.php" method="POST">
                 <input type="text" name="signupUsername" placeholder="Username" required>
-                <input type="password" name="signupPassword" placeholder="Password" required>
-                <input type="password" name="signupcPassword" placeholder="Confirm Password" required>
+                <input type="text" name="signupFirstName" placeholder="First Name" required>
+                <input type="text" name="signupLastName" placeholder="Last Name" required>
+                <input type="password" id="signupPassword" name="signupPassword" placeholder="Password" required>
+                <input type="password" id="signupcPassword" name="signupcPassword" placeholder="Confirm Password"
+                    required>
+                <input type="text" name="signupFavThing" placeholder="Favourite Thing">
                 <button type="submit" name="signup">SignUp</button>
+                <p style="color: red; display: none;" id="passwordError">Passwords do not match!</p>
                 <p>Already have an account? <a href="#" id="toLoginFromSignup">Click here</a></p>
             </form>
         </div>

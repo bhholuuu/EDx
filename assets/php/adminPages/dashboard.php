@@ -8,6 +8,8 @@ $categoryCountQuery = "SELECT COUNT(*) AS count FROM category";
 $courseCountQuery = "SELECT COUNT(*) AS count FROM course";
 $videoCountQuery = "SELECT COUNT(*) AS count FROM video";
 $commentCountQuery = "SELECT COUNT(*) AS count FROM comments";
+$noteCountQuery = "SELECT COUNT(*) AS count FROM notes"; // Query for notes
+$quizCountQuery = "SELECT COUNT(*) AS count FROM que"; // New query for quizzes
 
 // Fetch counts
 $userCountStmt = $conn->query($userCountQuery);
@@ -24,6 +26,12 @@ $videoCount = $videoCountStmt->fetch(PDO::FETCH_ASSOC)['count'] ?? 0;
 
 $commentCountStmt = $conn->query($commentCountQuery);
 $commentCount = $commentCountStmt->fetch(PDO::FETCH_ASSOC)['count'] ?? 0;
+
+$noteCountStmt = $conn->query($noteCountQuery);
+$noteCount = $noteCountStmt->fetch(PDO::FETCH_ASSOC)['count'] ?? 0;
+
+$quizCountStmt = $conn->query($quizCountQuery);
+$quizCount = $quizCountStmt->fetch(PDO::FETCH_ASSOC)['count'] ?? 0; // Fetch quiz count
 
 // Close the database connection
 $conn = null;
@@ -143,6 +151,16 @@ $conn = null;
             <div class="icon"><i class="fa-solid fa-video"></i></div>
             <h2><?php echo $videoCount; ?></h2>
             <p>Number of Videos</p>
+        </div>
+        <div class="card">
+            <div class="icon"><i class="fa-solid fa-sticky-note"></i></div>
+            <h2><?php echo $noteCount; ?></h2>
+            <p>Number of Notes</p>
+        </div>
+        <div class="card">
+            <div class="icon"><i class="fa-solid fa-clipboard-question"></i></div>
+            <h2><?php echo $quizCount; ?></h2>
+            <p>Number of Quizzes</p>
         </div>
         <div class="card">
             <div class="icon"><i class="fa-solid fa-comments"></i></div>
