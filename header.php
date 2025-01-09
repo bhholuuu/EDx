@@ -77,7 +77,7 @@ session_start();
             <a href="fields.php">Fields</a>
             <?php else: ?>
             <a href="explore.php">Explore</a>
-            <a href="login.php">Login</a>
+            <a href="signupLogin.php">Login</a>
             <?php endif; ?>
         </nav>
     </header>
