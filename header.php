@@ -72,7 +72,7 @@ session_start();
         <div class="logo">EDx</div>
         <nav class="nav">
             <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
-            <a href="account.php">My Account</a>
+            <a href="myAccount.php">My Account</a>
             <a href="courses.php">Courses</a>
             <a href="fields.php">Fields</a>
             <?php else: ?>

@@ -65,13 +65,21 @@
     }
 
     .slide-content {
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        /* Align items vertically */
         justify-content: center;
+        /* Center vertically */
+        align-items: center;
+        /* Center horizontally */
+        text-align: center;
         color: #fff;
         background: rgba(0, 0, 0, 0.5);
         padding: 20px;
         border-radius: 8px;
+        width: 100%;
         height: 100%;
+        /* Optional: To control text width */
     }
 
     .slide-content h2 {
@@ -99,6 +107,7 @@
     .slide-content button:hover {
         background-color: #005f8a;
     }
+
 
     .prev,
     .next {
@@ -136,6 +145,9 @@
 
 <body>
     <?php include 'header.php'; ?>
+
+    <div class="searchBar"></div>
+
 
     <div class="greetings" style="text-align: center; margin-top: 90px;">
         <h1>Welcome to EDx</h1>
@@ -194,7 +206,6 @@
             </button>
         </div>
     </div>
-
     <script>
     let currentSlide = 0;
 
@@ -217,9 +228,15 @@
         showSlide(currentSlide + step);
     }
 
+    // Automatically change slides every 2 seconds
+    setInterval(() => {
+        changeSlide(1);
+    }, 2000);
+
     // Initial display
     showSlide(currentSlide);
     </script>
+
 </body>
 
 </html>
