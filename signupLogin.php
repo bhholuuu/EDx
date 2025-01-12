@@ -11,6 +11,42 @@ include './assets/php/samePassword.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login, Signup & Reset Password</title>
     <link rel="stylesheet" href="./assets/css/signupLogin.css">
+    <style>
+    .avatar-selection {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin: 20px 0;
+        justify-items: center;
+    }
+
+    .avatar-selection input[type="radio"] {
+        display: none;
+    }
+
+    .avatar-selection label {
+        cursor: pointer;
+        transition: transform 0.3s ease, border 0.3s ease;
+        border: 2px solid transparent;
+        border-radius: 50%;
+        padding: 5px;
+    }
+
+    .avatar-option {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+
+    .avatar-selection input[type="radio"]:checked+label {
+        border-color: #0077cc;
+        transform: scale(1.1);
+    }
+
+    .avatar-selection label:hover {
+        transform: scale(1.05);
+    }
+    </style>
 </head>
 
 <body>
@@ -29,6 +65,7 @@ include './assets/php/samePassword.php';
         </div>
 
         <!-- Signup Form -->
+        <!-- Signup Form -->
         <div class="form signup" id="signupForm" style="display: none;">
             <h1>SignUp</h1>
             <form id="signupForm" action="assets/php/signup.php" method="POST" onsubmit="return validatePasswords()">
@@ -39,6 +76,19 @@ include './assets/php/samePassword.php';
                 <input type="password" id="signupcPassword" name="signupcPassword" placeholder="Confirm Password"
                     required>
                 <input type="text" name="signupFavThing" placeholder="Favourite Thing">
+                <div class="avatar-selection">
+                    <?php
+    for ($i = 1; $i <= 8; $i++) {
+        $avatarFile = "a$i.png";
+        echo '
+        <input type="radio" name="signupAvatar" value="' . $avatarFile . '" id="avatar' . $i . '" required>
+        <label for="avatar' . $i . '">
+            <img src="./assets/img/avatar/' . $avatarFile . '" alt="Avatar" class="avatar-option">
+        </label>';
+    }
+    ?>
+                </div>
+
                 <button type="submit" name="signup">SignUp</button>
                 <p style="color: red; display: none;" id="passwordError">Passwords do not match!</p>
                 <p>Already have an account? <a href="#" id="toLoginFromSignup">Click here</a></p>
