@@ -107,68 +107,144 @@ exit();
     <title>My Account</title>
     <style>
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        font-family: 'Arial', sans-serif;
+        background-color: #374f59;
         margin: 0;
         padding: 0;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
+        color: #d9d9d9;
+        overflow: hidden;
+    }
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #35636d;
+        color: #d9d9d9;
+        padding: 15px 20px;
+        text-align: center;
+        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header .logo img {
+        width: 50px;
+        height: 50px;
+        margin-left: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .header .logo img:hover {
+        transform: scale(1.1);
+    }
+
+    .header .options {
+        padding: 10px;
+        margin-right: 20px;
+    }
+
+    .header .options a {
+        color: #d9d9d9;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .header .options a:hover {
+        color: #ff6347;
     }
 
     .container {
         text-align: center;
         position: relative;
-        max-width: 400px;
+        max-width: 450px;
         width: 100%;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: #35636d;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        margin-top: 60px;
+        transition: all 0.3s ease;
+    }
+
+    .container:hover {
+        /* transform: scale(1.05); */
     }
 
     .avatar {
-        width: 150px;
-        height: 150px;
+        width: 180px;
+        height: 180px;
         border-radius: 50%;
-        margin: 20px auto;
+        margin: 25px auto;
         display: block;
         object-fit: cover;
-        border: 2px solid #ddd;
+        border: 3px solid #d9d9d9;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+    .avatar:hover {
+        transform: scale(1.1);
+    }
+
+    .username {
+        font-size: 1.2rem;
+        margin: 10px 0;
+        font-weight: bold;
+        color: #d9d9d9;
+    }
+
+    .info {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .info span {
+        font-weight: bold;
+        color: #ff6347;
     }
 
     .edit-btn {
         position: absolute;
-        top: 10px;
-        right: 10px;
-        background-color: #0077cc;
-        color: white;
+        top: 20px;
+        right: 20px;
+        background-color: #374f59;
+        color: #d9d9d9;
         border: none;
         border-radius: 5px;
-        padding: 5px 10px;
+        padding: 8px 12px;
         cursor: pointer;
         font-size: 14px;
-    }
-
-    .edit-btn:hover {
-        background-color: #005799;
+        transition: background-color 0.3s ease;
     }
 
     .edit-pass-btn {
-        top: 10px;
-        right: 10px;
-        background-color: #0077cc;
-        color: white;
+        /* position: absolute; */
+        top: 20px;
+        right: 20px;
+        background-color: #374f59;
+        color: #d9d9d9;
         border: none;
         border-radius: 5px;
-        padding: 5px 10px;
+        padding: 8px 12px;
         cursor: pointer;
         font-size: 14px;
+        transition: background-color 0.3s ease;
     }
 
+    .edit-btn:hover,
     .edit-pass-btn:hover {
-        background-color: #005799;
+        background-color: rgb(41, 77, 85);
     }
 
     .popup {
@@ -176,11 +252,13 @@ exit();
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: #fff;
-        padding: 20px;
+        background: #35636d;
+        padding: 25px;
         border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
         display: none;
+        width: 90%;
+        max-width: 500px;
     }
 
     .popup.active {
@@ -192,9 +270,10 @@ exit();
         color: white;
         border: none;
         border-radius: 5px;
-        padding: 5px 10px;
+        padding: 7px 12px;
         cursor: pointer;
         font-size: 14px;
+        transition: background-color 0.3s ease;
     }
 
     .popup .close-btn:hover {
@@ -204,46 +283,57 @@ exit();
     .popup form {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
     }
 
     .popup input {
-        padding: 10px;
-        border: 1px solid #ddd;
+        padding: 12px;
+        border: 1px solid #d9d9d9;
         border-radius: 5px;
+        font-size: 14px;
+        background-color: #4e686e;
+        color: #d9d9d9;
+        transition: border-color 0.3s ease;
+    }
+
+    .popup input:focus {
+        border-color: #ff6347;
     }
 
     .popup button {
-        padding: 10px;
-        background-color: #0077cc;
-        color: white;
+        padding: 12px;
+        background-color: #374f59;
+        color: #d9d9d9;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
     }
 
     .popup button:hover {
-        background-color: #005799;
+        background-color: #35636d;
     }
 
     .avatar-options {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 12px;
         justify-content: center;
+        margin-top: 20px;
     }
 
     .avatar-options img {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         cursor: pointer;
-        border: 2px solid transparent;
-        transition: border-color 0.3s;
+        border: 3px solid transparent;
+        transition: border-color 0.3s ease;
     }
 
     .avatar-options img:hover {
-        border-color: #0077cc;
+        border-color: #ff6347;
     }
 
     .avatar-options input[type="radio"] {
@@ -251,28 +341,59 @@ exit();
     }
 
     .avatar-options input[type="radio"]:checked+img {
-        border-color: #0077cc;
+        border-color: #ff6347;
     }
 
     .logout-btn {
-        background-color: #f44336;
+        background-color: #ff5c5c;
         color: white;
         border: none;
         border-radius: 5px;
-        padding: 10px 15px;
+        padding: 12px 20px;
         cursor: pointer;
-        font-size: 14px;
-        margin-top: 15px;
-        transition: background-color 0.3s;
+        font-size: 16px;
+        margin-top: 30px;
+        transition: background-color 0.3s ease;
     }
 
     .logout-btn:hover {
-        background-color: #d32f2f;
+        background-color: #e53e3e;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 20px;
+            max-width: 90%;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+        }
+
+        .avatar-options img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .popup input {
+            font-size: 12px;
+        }
     }
     </style>
 </head>
 
 <body>
+    <div class="header">
+        <div class="logo">
+            <a href="index.php"><img src="assets/img/logo.png" alt="Logo"></a>
+        </div>
+        <div class="options">
+            <a href="myCourse.php">My Courses</a>
+            <a href="aboutUs.php">About Us</a>
+            <a href="contactUs.php">Contact Us</a>
+        </div>
+    </div>
     <div class="container">
         <!-- Display user avatar -->
         <img src="<?= htmlspecialchars($avatarPath) ?>" alt="User Avatar" class="avatar">

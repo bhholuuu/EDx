@@ -52,6 +52,14 @@ session_start();
         color: #35636d;
     }
 
+    .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #d9d9d9;
+    }
+
     @media (max-width: 768px) {
         header {
             flex-direction: column;
@@ -72,12 +80,29 @@ session_start();
         <div class="logo">EDx</div>
         <nav class="nav">
             <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+            <?php
+                // Check if the user has an avatar stored in the session
+                if (isset($_SESSION['avatar']) && !empty($_SESSION['avatar'])) {
+                    // Construct the avatar image path
+                    $avatarPath = './assets/img/avatar/' . $_SESSION['avatar'];
+                    if (!file_exists($avatarPath)) {
+                        // Fallback to a default avatar if the image is not found
+                        $avatarPath = './assets/img/avatar/default-avatar.png';
+                    }
+                    ?>
+            <a href="myAccount.php">
+                <img src="<?php echo $avatarPath; ?>" alt="User Avatar" class="avatar">
+            </a>
+            <?php } else { ?>
             <a href="myAccount.php">My Account</a>
-            <a href="courses.php">Courses</a>
-            <a href="fields.php">Fields</a>
+            <?php } ?>
+            <a href="myCourse.php">My Courses</a>
+            <a href="categories.php">Fields</a>
+            <a href="supportUs.php">Support Us</a>
             <?php else: ?>
-            <a href="explore.php">Explore</a>
+            <a href="exploreCategory.php">Explore</a>
             <a href="signupLogin.php">Login</a>
+            <a href="supportUs.php">Support Us</a>
             <?php endif; ?>
         </nav>
     </header>

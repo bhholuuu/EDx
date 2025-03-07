@@ -17,10 +17,6 @@
         background-color: #f0f0f0;
     }
 
-    body {
-        padding-top: 0px;
-    }
-
     /* Header Styles */
     header {
         position: fixed;
@@ -29,14 +25,6 @@
         background-color: #ffffff;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
-    }
-
-    .container {
-        height: 70px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 30px;
     }
 
     /* Slider Styles */
@@ -49,10 +37,11 @@
 
     .slides {
         display: flex;
+        overflow: hidden;
+        position: relative;
     }
 
     .slide {
-        position: relative;
         min-width: 100%;
         height: 500px;
         display: flex;
@@ -61,17 +50,14 @@
         background-size: cover;
         background-position: center;
         border-radius: 10px;
-        overflow: hidden;
+        position: relative;
     }
 
     .slide-content {
         display: flex;
         flex-direction: column;
-        /* Align items vertically */
         justify-content: center;
-        /* Center vertically */
         align-items: center;
-        /* Center horizontally */
         text-align: center;
         color: #fff;
         background: rgba(0, 0, 0, 0.5);
@@ -79,7 +65,7 @@
         border-radius: 8px;
         width: 100%;
         height: 100%;
-        /* Optional: To control text width */
+        position: relative;
     }
 
     .slide-content h2 {
@@ -108,7 +94,30 @@
         background-color: #005f8a;
     }
 
+    /* "New" Badge */
+    .new-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: linear-gradient(135deg, #ff4d4d, #cc0000);
+        color: white;
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 20px;
+        text-transform: uppercase;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        letter-spacing: 0.5px;
+        transition: transform 0.2s ease-in-out;
+        z-index: 9;
+    }
 
+    .new-badge:hover {
+        transform: scale(1.1);
+    }
+
+
+    /* Navigation Arrows */
     .prev,
     .next {
         position: absolute;
@@ -116,21 +125,16 @@
         top: 0;
         width: auto;
         padding: 16px;
-        font-weight: bold;
         font-size: 18px;
         cursor: pointer;
-        user-select: none;
         background: rgba(0, 0, 0, 0);
         border: none;
-        border-radius: 0 3px 3px 0;
         z-index: 5;
         color: #f0f0f0;
-        background: transparent;
     }
 
     .next {
         right: 0;
-        border-radius: 3px 0 0 3px;
     }
 
     .prev:hover {
@@ -140,14 +144,28 @@
     .next:hover {
         background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(0, 0, 0));
     }
+
+    /* Hide scrollbar for all elements */
+    ::-webkit-scrollbar {
+        display: none;
+        /* Hide scrollbar for Chrome, Safari, and Edge */
+    }
+
+    html,
+    body {
+        scrollbar-width: none;
+        /* Hide scrollbar for Firefox */
+        -ms-overflow-style: none;
+        /* Hide scrollbar for Internet Explorer/Edge */
+        overflow-y: scroll;
+        /* Ensure scrolling is still possible */
+    }
     </style>
 </head>
 
 <body>
+
     <?php include 'header.php'; ?>
-
-    <div class="searchBar"></div>
-
 
     <div class="greetings" style="text-align: center; margin-top: 90px;">
         <h1>Welcome to EDx</h1>
@@ -161,51 +179,48 @@
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </button>
 
-            <!-- Slide 1 -->
-            <div class="slide"
-                style="background-image: url('https://images.unsplash.com/photo-1485470733090-0aae1788d5af?q=80&w=1834&auto=format&fit=crop');">
-                <div class="slide-content">
-                    <h2>Explore the Universe</h2>
-                    <p>Discover the wonders of the cosmos with our resources.</p>
-                    <button>Explore</button>
-                </div>
-            </div>
+            <?php
+            include './assets/php/_connectionDb.php'; // Database connection
 
-            <!-- Slide 2 -->
-            <div class="slide"
-                style="background-image: url('https://images.unsplash.com/photo-1503614472-8c93d56e92ce?q=80&w=2011&auto=format&fit=crop');">
-                <div class="slide-content">
-                    <h2>Innovate and Inspire</h2>
-                    <p>Learn the skills to change the world.</p>
-                    <button>Explore</button>
-                </div>
-            </div>
+            $query = "SELECT categoryName, description, thumbnail FROM category ORDER BY categoryId DESC LIMIT 3";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            <!-- Slide 3 -->
-            <div class="slide"
-                style="background-image: url('https://images.unsplash.com/photo-1545641203-7d072a14e3b2?q=80&w=1933&auto=format&fit=crop');">
+            foreach ($result as $row) {
+                $imageData = base64_encode($row['thumbnail']);
+                $imageSrc = "data:image/jpeg;base64," . $imageData;
+            ?>
+            <div class="slide" style="background-image: url('<?php echo $imageSrc; ?>');">
                 <div class="slide-content">
-                    <h2>Achieve Your Goals</h2>
-                    <p>Let EDx guide your way to success.</p>
-                    <button>Explore</button>
+                    <div class="new-badge">New</div>
+                    <h2><?php echo htmlspecialchars($row['categoryName']); ?></h2>
+                    <p><?php echo htmlspecialchars($row['description']); ?></p>
+                    <!-- <button>Explore</button> -->
                 </div>
             </div>
-
-            <!-- Slide 4 -->
-            <div class="slide"
-                style="background-image: url('https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg?auto=compress&cs=tinysrgb');">
-                <div class="slide-content">
-                    <h2>Explore the Night Sky</h2>
-                    <p>Get inspired by the beauty of the stars.</p>
-                    <button>Explore</button>
-                </div>
-            </div>
+            <?php
+            }
+            ?>
 
             <button class="next" onclick="changeSlide(1)">
                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
             </button>
         </div>
     </div>
+    <!-- Footer -->
+    <footer style="background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 50px;">
+        <p>&copy; 2025 EDx. All rights reserved.</p>
+        <p>
+            <a href="privacyPolicy.php" style="color: #0087ca; text-decoration: none; margin: 0 10px;">Privacy
+                Policy</a> |
+            <a href="termsOfService.php" style="color: #0087ca; text-decoration: none; margin: 0 10px;">Terms of
+                Service</a> |
+            <a href="contactUs.php" style="color: #0087ca; text-decoration: none; margin: 0 10px;">Contact Us</a>
+        </p>
+    </footer>
+
+
     <script>
     let currentSlide = 0;
 
@@ -231,7 +246,7 @@
     // Automatically change slides every 2 seconds
     setInterval(() => {
         changeSlide(1);
-    }, 2000);
+    }, 4000);
 
     // Initial display
     showSlide(currentSlide);

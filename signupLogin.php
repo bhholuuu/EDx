@@ -46,10 +46,34 @@ include './assets/php/samePassword.php';
     .avatar-selection label:hover {
         transform: scale(1.05);
     }
+
+    .header {
+        background-color: #007bff;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-size: 20px;
+        font-weight: bold;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .header a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        margin-left: 15px;
+    }
     </style>
 </head>
 
 <body>
+    <div class="header">
+        <a href="index.php">Go to Home</a>
+    </div>
     <div class="outerBody">
 
         <!-- Login Form -->
